@@ -17,7 +17,7 @@ const Contactus = () => {
          }
     }
     return (
-        <div className='flex mb-[2rem] h-[400px] flex-col items-center my-auto mx-auto gap-[10px] w-[500px] shadow-lg shadow-[#292323] border'>
+        <div className='flex  mb-[2rem] h-[400px] flex-col items-center my-auto mx-auto gap-[10px] sm:max-w-[500px] max-w-[300px] shadow-lg shadow-[#292323] border'>
             <h1 className='mt-[20px] font-[500] text-[1.4rem]'>Contact Us</h1>
             <form className='flex gap-[10px] flex-col'>
                 <label/>Name:<input onChange={(e)=>setname(e.target.value)} className='w-[200px] rounded-[5px] text-center outline-none border border-amber-300' type='text' placeholder='name.....'/>

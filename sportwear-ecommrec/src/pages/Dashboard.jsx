@@ -12,7 +12,7 @@ const Dashboard = () => {
     
     return (
         <div className='flex w-[100%] gap-[2rem] sm:gap-[4rem] '>
-        <div className='w-[40%] sm:w-[20%] rounded-[5px] h-[100vh] bg-[black] text-[#fff] flex flex-col pt-[1rem] gap-[20px]  items-center '>
+        <div className='w-[60%] sm:w-[40%] rounded-[5px] h-[100vh] bg-[black] text-[#fff] flex flex-col pt-[1rem] gap-[20px]  items-center '>
             <Link to={'/addproduct'} className='mt-[100px] bg-[white] text-black p-[5px] rounded-[5px] border border-transparent'>add product</Link>
             <Link to={'/allproducts'} className='bg-red-600 p-[5px] rounded-[5px] border border-transparent' >All products</Link>
             <button onClick={()=>logout()} className='bg-blue-600 cursor-pointer text-[white] p-[5px] rounded-[5px] border border-transparent'>log out</button>

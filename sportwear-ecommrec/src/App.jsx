@@ -26,6 +26,7 @@ function App() {
   return (
     <BrowserRouter>
     <Context>
+      <div className='max-w-[100%]'>
     <Navbar/>
     <Cart/>
    
@@ -40,7 +41,7 @@ function App() {
      <Route path='/men' element={<Men/>}/>
      <Route path='/kids' element={<Kids/>}/>
      <Route path='/contactus' element={<Contactus/>}/>
-     <Route path='/buyproduct/:id' element={<Buyproduct/>}/>
+     <Route path='/buyproduct' element={<Buyproduct/>}/>
      <Route path='/addproduct' element={<Addproduct/>}/>
      <Route path='/allproducts' element={<Allproducts/>}/>
      <Route path='/dashboard' element={<Protectedroute><Dashboard/></Protectedroute>}/>
@@ -54,6 +55,7 @@ function App() {
    
    
     <Footer/>
+    </div>
     </Context>
       
     </BrowserRouter>

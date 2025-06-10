@@ -7,8 +7,8 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 
 const Navbar = () => {
-    const {setopen}=Usecont()
-    const[show,setshow]=useState(false)
+    const { setopen, cartarray } = Usecont();
+    const [show, setshow] = useState(false);
     return (
         <header className='flex items-center p-[1rem] justify-between sm:flex sm:justify-between sm:text-[black] sm:p-[2rem]'>
         
@@ -25,6 +25,7 @@ const Navbar = () => {
             <div className='invisible sm:visible sm:flex gap-[1rem] sm:items-center'>
             <Link className='hover:border-b hover:border-red-500 transition  duration-[.5s] ease-in-out' to="/login">login</Link>
             <Link onClick={()=>setopen(true)} className='sm:text-[2rem]'><CiShoppingCart/></Link>
+            <span className='text-red-600 relative text-2xl top-[10px] right-[40px]'>{cartarray.length}</span>
             </div>
             {show&&<div className='w-[100%] p-[1rem] flex flex-col items-center absolute  top-[40px]  bg-[black] text-amber-50'>
                         <Link onClick={()=>{setopen(true) ;setshow(false)}} className='sm:text-[2rem]'><CiShoppingCart className='text-[2rem]'/></Link>

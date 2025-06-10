@@ -1,68 +1,46 @@
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Usecont } from "../context/context";
 
 
 const Buyproduct = () => {
-    const {buy,setqauntity,settotalPrice}=Usecont()
-    const {id}=useParams();
-    const [product,setproduct]=useState({});
-    const navigate=useNavigate();
-    const [request,setrequest]=useState("submit");
-    
-    const btn=useRef();
-    const inp=useRef();
-    const inp2=useRef();
-    const inp3=useRef();
-    const inp4=useRef();
-    const inp5=useRef();
-    useEffect(()=>{
-        const get=async()=>{
-            try{
-                axios.get(`e-commrce-back-end-production.up.railway.app/products/${id}`).then((res)=>setproduct(res.data));
-            }catch(err){
-                console.log(err);
-            }
-        }
-        get()
-    },[id])
-    const handle=()=>{
-        if(inp.current.value !="" && inp2.current.value!="" && inp3.current.value!="" && inp4.current.value!=""&& inp5.current.value!=""){
-        btn.current.className="disabled";
-        setrequest("done");
-        buy(product)
-        settotalPrice(inp2.current.value* Number(product.price))
-        setqauntity(inp2.current.value);
-       
-        navigate('/')
-        
-    }else{
-        setrequest("please fill every field")
-    }
 
-    }
+
+    const navigate=useNavigate();
+    const {totalPrice,cartarray}=Usecont();
+    const cardNumberRef = useRef();
+    const expiryRef = useRef();
+    const cvvRef = useRef();
+    // This function is called when the user clicks the "pay" button
+    const handlePay=()=>{
+        
+        if(cardNumberRef.current.value !== '' && expiryRef.current.value !== '' && cvvRef.current.value !== '' && cardNumberRef.current.value.length >= 16 && expiryRef.current.value.length >= 5 && cvvRef.current.value.length >= 3) {
     
-  
+        cartarray.splice(0, cartarray.length); // Clear the cart after payment
+        // Here you can implement the payment logic
+        // For example, you can send the payment details to your backend server
+        // or use a payment gateway API to process the payment.
+        // After successful payment, you can navigate to a success page or show a success message.
+        window.alert("Payment successful!");
+        navigate('/');
+            }else{
+                window.alert("Please fill in all fields correctly.");
+            }
+    };
+
     return (
-        <div className='mt-[2rem] mb-[30px] w-[400px] h-[600px] shadow-lg shadow-[#292323] m-auto flex flex-col items-center border border-[#292323] p-[1rem] gap-[2rem]'>
+        <form className='mt-[2rem] mb-[30px] w-[400px] h-[600px] shadow-lg shadow-[#292323] m-auto flex flex-col items-center border border-[#292323] p-[1rem] gap-[2rem]'>
            <h1>payment</h1>
-           <div className="flex gap-3.5">
-            <img className="w-[80px]" src={product.image} alt={product.name}/>
-           <h2>{product.name}</h2>
-            <h2>{product.price}</h2>
-             
-            
-            </div>
-            <input required ref={inp} className='w-[200px] border border-amber-300 text-center outline-0' placeholder='your name'/>
-            <input required ref={inp2} className='w-[200px] border border-amber-300 text-center outline-0' placeholder='qauntity ' type='number' />
-                <input required ref={inp3} className='w-[200px] border border-amber-300 text-center outline-0' placeholder='card number' type='text'/>
-                <input required ref={inp4} className='w-[200px] border border-amber-300 text-center outline-0' placeholder='MM/YY' type='text'/>
-                <input required ref={inp5} className='w-[200px] border border-amber-300 text-center outline-0' placeholder='cvv' type='text'/>
-                <button ref={btn} onClick={handle} className='w-[200px]  text-center outline-0 cursor-pointer border border-[#292323] rounded-[10px]'>{request}</button>
-            
-            
-        </div>
+           <h2>total price:{totalPrice}</h2>
+
+            <input type="text" id="name" className='w-[200px] border border-amber-300 text-center outline-0' placeholder='your name' required/>
+                <input ref={cardNumberRef} type="text" id="cardNumber" className='w-[200px] border border-amber-300 text-center outline-0' placeholder='card number' required/>
+                <input ref={expiryRef} type="text" id="expiry" className='w-[200px] border border-amber-300 text-center outline-0' placeholder='MM/YY' required/>
+                <input ref={cvvRef} type="text" id="cvv" className='w-[200px] border border-amber-300 text-center outline-0' placeholder='cvv' required/>
+                <button  type="submit" onClick={()=>{handlePay()}} className='w-[200px]  text-center outline-0 cursor-pointer border border-[#292323] rounded-[10px]'>pay</button>
+
+
+        </form>
     );
 }
 

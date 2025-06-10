@@ -47,8 +47,8 @@ const Login = () => {
     }
     return (
         
-            <form className='mb-[30px] mt-[2rem] w-[400px] h-[400px] shadow-lg shadow-[#292323] m-auto flex flex-col items-center border border-[#292323] p-[1rem] gap-[2rem]'>
-              <lable/>Email:  <input className='sm:w-[200px] sm:text-center sm:outline-0' onChange={(e)=>setemail(e.target.value)} type='email' placeholder='Email...'/>
+            <form className='max-w-[300px] mb-[30px] mt-[2rem] sm:max-w-[400px] h-[400px] shadow-lg shadow-[#292323] m-auto flex flex-col items-center border border-[#292323] p-[1rem] gap-[2rem]'>
+              <lable/>Email:  <input className='sm:w-[200px] sm:text-center sm:outline-0 ' onChange={(e)=>setemail(e.target.value)} type='email' placeholder='Email...'/>
               <lable/>Password:  <input onChange={(e)=>setpass(e.target.value)} className='sm:w-[200px] sm:text-center sm:outline-0' type='password' placeholder='password...'/>
                 <button onClick={()=>handle()} className='sm:w-[200px] sm:text-center sm:outline-0 cursor-pointer border border-[#292323] rounded-[10px]' type='submit'>submit</button> 
             </form>
